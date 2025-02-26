@@ -1,5 +1,5 @@
+using Auth.Core.Middlewares;
 using Auth.Infrastructure.Extensions;
-using Auth.Infrastructure.Middlewares;
 using Microsoft.OpenApi.Models;
 
 

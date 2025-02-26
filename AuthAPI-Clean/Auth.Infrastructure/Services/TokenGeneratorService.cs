@@ -1,4 +1,4 @@
-﻿using Auth.Infrastructure.Identity;
+﻿using Auth.Core.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -7,24 +7,18 @@ using System.Text;
 
 namespace Auth.Infrastructure.Services
 {
-    public sealed class TokenGenerator
+    public sealed class TokenGeneratorService : ITokenGeneratorService
     {
         private readonly IConfiguration _configuration;
 
-        public TokenGenerator(IConfiguration configuration)
+        public TokenGeneratorService(IConfiguration configuration)
         {
             _configuration = configuration;
         }
 
 
-        public string GenerateJwtTokenAsync(ApplicationUser user)
+        public string GenerateJwtToken(List<Claim> claims)
         {
-            var claims = new[]
-            {
-                new Claim(ClaimTypes.NameIdentifier, user.Id),
-                new Claim(ClaimTypes.Name, user.UserName)
-            };
-
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSettings:Secret"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 

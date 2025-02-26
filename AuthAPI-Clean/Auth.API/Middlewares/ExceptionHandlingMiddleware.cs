@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
-using System.Net;
+﻿using System.Net;
 
-namespace Auth.Infrastructure.Middlewares
+namespace Auth.Core.Middlewares
 {
     public class ExceptionHandlingMiddleware
     {
