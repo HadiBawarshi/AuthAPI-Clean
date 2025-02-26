@@ -1,4 +1,5 @@
 using Auth.Infrastructure.Extensions;
+using Auth.Infrastructure.Middlewares;
 using Microsoft.OpenApi.Models;
 
 
@@ -34,5 +35,9 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+//Exception handling middleware
+app.UseMiddleware<ExceptionHandlingMiddleware>();
+
 
 app.Run();
