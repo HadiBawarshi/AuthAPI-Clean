@@ -40,7 +40,7 @@ AuthAPI-Clean is an authentication Web API built using ASP.NET 6 and SQL Server 
 ### Setup Steps
 #### 1. Clone the Repository
 ```sh
-git clone <repository-url>
+git clone https://github.com/HadiBawarshi/AuthAPI-Clean.git
 cd AuthAPI-Clean
 ```
 
