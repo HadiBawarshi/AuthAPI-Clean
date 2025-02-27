@@ -1,3 +1,4 @@
+using Auth.Application.Extensions;
 using Auth.Core.Middlewares;
 using Auth.Infrastructure.Extensions;
 using Microsoft.OpenApi.Models;
@@ -12,6 +13,12 @@ builder.Services.AddControllers();
 builder.Services.AddIdentityDbContext(builder.Configuration);
 
 builder.Services.AddEndpointsApiExplorer();
+
+builder.Services.AddApplicationServices();
+
+builder.Services.AddAutoMapper(typeof(Program));
+
+builder.Services.AddInfrastructureIdentityServices();
 
 builder.Services.AddSwaggerGen(c =>
 {
@@ -31,10 +38,16 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Auth.API v1"));
 }
 
+app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllers();
+//app.MapControllers();
+app.UseEndpoints(endpoints =>
+ {
+     endpoints.MapControllers();
+ });
+
 
 //Exception handling middleware
 app.UseMiddleware<ExceptionHandlingMiddleware>();

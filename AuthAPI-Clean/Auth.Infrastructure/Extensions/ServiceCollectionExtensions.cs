@@ -1,5 +1,7 @@
-﻿using Auth.Infrastructure.Data;
+﻿using Auth.Core.Interfaces;
+using Auth.Infrastructure.Data;
 using Auth.Infrastructure.Identity;
+using Auth.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -48,7 +50,11 @@ namespace Auth.Infrastructure.Extensions
                 };
             });
         }
-
+        public static void AddInfrastructureIdentityServices(this IServiceCollection services)
+        {
+            services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<ITokenGeneratorService, TokenGeneratorService>();
+        }
 
 
     }
