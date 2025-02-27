@@ -5,7 +5,9 @@ using System.Net;
 
 namespace Auth.API.Controllers
 {
-    public class AuthController : ApiController
+    [Route("api/[controller]")]
+    [ApiController]
+    public class AuthController : ControllerBase
     {
         private readonly IMediator _mediator;
 

@@ -31,6 +31,9 @@ builder.Services.AddJWTAuthentication(builder.Configuration);
 var app = builder.Build();
 
 
+//Exception handling middleware
+app.UseMiddleware<ExceptionHandlingMiddleware>();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
@@ -49,8 +52,6 @@ app.UseEndpoints(endpoints =>
  });
 
 
-//Exception handling middleware
-app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 
 app.Run();
