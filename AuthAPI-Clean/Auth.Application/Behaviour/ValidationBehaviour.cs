@@ -30,7 +30,7 @@ namespace Auth.Application.Behaviour
                     return new TResponse
                     {
                         Result = 0,
-                        Message = "Validation failed",
+                        Message = failures.Select(x => x.ErrorMessage).FirstOrDefault() ?? "Validation failed",
                         Errors = failures
                             .Select(e => new ValidationError(e.PropertyName, e.ErrorMessage))
                             .ToList()

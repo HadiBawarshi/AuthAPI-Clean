@@ -42,6 +42,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseRouting();
+
+app.UseCors(options => options.AllowAnyOrigin()
+.AllowAnyHeader()
+ .WithMethods("GET", "POST", "OPTIONS", "PUT", "DELETE"));
 app.UseAuthentication();
 app.UseAuthorization();
 
